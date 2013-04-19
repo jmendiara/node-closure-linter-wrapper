@@ -1,0 +1,37 @@
+{
+  "name": "closure-linter-wrapper",
+  "description": "Node Wrapper to allow access to Google Closure Linter from NodeJS",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jmendiara/node-closure-linter-wrapper",
+  "author": {
+    "name": "Javier Mendiara Cañardo",
+    "email": "jmendiara@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmendiara/node-closure-linter-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmendiara/node-closure-linter-wrapper/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jmendiara/node-closure-linter-wrapper/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/closure-linter-wrapper",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "keywords": []
+}
