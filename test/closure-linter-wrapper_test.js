@@ -92,7 +92,7 @@ describe('Closure Linter Wrapper', function() {
     var gjslint = closure_linter.gjslint;
 
     it('should lint code', function(done) {
-       gjslint(['', 'mocha-globals.js'], function(err, result) {
+       gjslint({params: ['', 'mocha-globals.js']}, function(err, result) {
          expect(err).to.be.null;
          expect(result).to.have.property('success').to.be.true;
          done();
