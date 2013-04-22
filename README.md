@@ -2,14 +2,36 @@
 
 UNDER DEVELOPMENT!!!
 
-Node Wrapper to allow access to Google Closure Linter from NodeJS
+Node Wrapper to allow access to (Google Closure Linter)[https://developers.google.com/closure/utilities/] from NodeJS
+
+This wrapper is executing patched version from
+(Elad Karako)[http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/]
+that allows you to skip by configuration some detected errors. This version will
+allow your codebase to be transformed step by step, while maintaining fully
+Google coding guidelines compliance.
+
 
 ## Getting Started
 Install the module with: `npm install closure-linter-wrapper`
 
+Execute the linter
 ```javascript
-var closure_linter_wrapper = require('closure-linter-wrapper');
-closure_linter_wrapper.awesome(); // "awesome"
+var gjslint = require('closure-linter-wrapper').gjslint;
+gjslint(params, function (err){
+  if (!err){
+    console.log('Everything went fine!');
+  }
+});
+```
+
+Execute the automatic style fixer
+```javascript
+var fixjsstyle = require('closure-linter-wrapper').fixjsstyle;
+fixjsstyle(params, function (err){
+  if (!err){
+    console.log('Everything went fine!');
+  }
+});
 ```
 
 ## Documentation

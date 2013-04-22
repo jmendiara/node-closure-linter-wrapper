@@ -25,13 +25,18 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "grunt simplemocha"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
     "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt": "~0.4.1",
+    "mocha": "~1.9.0",
+    "chai": "~1.5.0",
+    "sinon": "~1.6.0",
+    "stream-splitter": "~0.2.0",
+    "proxyquire": "~0.4.1"
   },
   "keywords": []
 }

@@ -1,0 +1,12 @@
+----- FILE  :  /Users/foo.js -----
+Line 3, E:0220: No docs found for member 'module.exports'
+Line 5, E:0020: Something
+----- FILE  :  /Users/bar.js -----
+Line 4, E:0220: No docs found for member 'global.expect'
+Found 3 errors, including 0 new errors, in 2 files (0 files OK).
+
+Some of the errors reported by GJsLint may be auto-fixable using the script
+fixjsstyle. Please double check any changes it makes and report any bugs. The
+script can be run by executing:
+
+fixjsstyle Gruntfile.js mocha-globals.js

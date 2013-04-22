@@ -4,9 +4,19 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    nodeunit: {
-      files: ['test/**/*_test.js']
+    simplemocha: {
+      options: {
+        ui: 'bdd',
+        reporter: 'dot'
+      },
+      unit: {
+        src: [
+          'mocha-globals.js',
+          'test/**/*.js'
+        ]
+      }
     },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -38,11 +48,11 @@ module.exports = function(grunt) {
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jshint', 'simplemocha']);
 
 };
