@@ -1,4 +1,9 @@
 node_modules/
 .jshintrc
+.gitignore
+.npmignore
 test/
 mocha-globals.js
+.idea/
+Gruntfile.js
+
