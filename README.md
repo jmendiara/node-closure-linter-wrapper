@@ -1,50 +1,178 @@
 # closure-linter-wrapper
 
-UNDER DEVELOPMENT!!!
+Node Wrapper to allow access to [Google Closure Linter](https://developers.google.com/closure/utilities/) from NodeJS
 
-Node Wrapper to allow access to (Google Closure Linter)[https://developers.google.com/closure/utilities/] from NodeJS
+As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH.
 
-This wrapper is executing patched version from
-(Elad Karako)[http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/]
+This wrapper has bundled the [Google Lint v2.3.9 patched by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
 that allows you to skip by configuration some detected errors. This version will
 allow your codebase to be transformed step by step, while maintaining fully
-Google coding guidelines compliance.
+Google coding guidelines compliance. Therefore, no aditionally dependencies must be installed, just python.
 
 
 ## Getting Started
-Install the module with: `npm install closure-linter-wrapper`
+Install the module with: 
+```bash
+npm install closure-linter-wrapper
+```
 
 Execute the linter
 ```javascript
 var gjslint = require('closure-linter-wrapper').gjslint;
-gjslint(params, function (err){
-  if (!err){
-    console.log('Everything went fine!');
+gjslint({params: paramsArray}, function (err, result){
+  if (err){
+    console.error('Something went wrong', err);
+  } else if (result.success){
+      console.log('lint success');
+  } else {
+      console.log('lint failed', result);
   }
 });
 ```
 
 Execute the automatic style fixer
 ```javascript
-var fixjsstyle = require('closure-linter-wrapper').fixjsstyle;
-fixjsstyle(params, function (err){
-  if (!err){
-    console.log('Everything went fine!');
-  }
-});
+// COMING SOON
 ```
 
 ## Documentation
-_(Coming soon)_
+### Parameters
+The configuration parameters allow you to customize all the behaviour of the linter. The parameters are exactly 
+the same google linter flags you pass to the python linter, plus the flag for ommiting some errors by Elad Karako
+```js
+var gjslint = require('closure-linter-wrapper').gjslint;
+var paramsArray = [
+  '--nostrict',
+  '--nojsdoc',
+  '--ignore_errors 220,14'
+];
+gjslint({params: paramsArray}, function (err, result){});
+```
 
-## Examples
-_(Coming soon)_
+*TIP*: If you are using JetBrains WebStorm v6, you can enable gjslint. For doing this, you must provide a `config.file` with 
+the flags passed to your linter. You can rehuse this `config.file` and pass it to this linter, by specifying in the 
+`--flagfile` flag
+
+#### Flags reference
+```
+closure_linter.checker:
+  --closurized_namespaces: Namespace prefixes, used for testing ofgoog.provide/require
+    (default: '')
+    (a comma separated list)
+  --ignored_extra_namespaces: Fully qualified namespaces that should be not be reported as extra by the
+    linter.
+    (default: '')
+    (a comma separated list)
+
+closure_linter.common.simplefileflags:
+  -e,--exclude_directories: Exclude the specified directories (only applicable along with -r or --presubmit)
+    (default: '_demos')
+    (a comma separated list)
+  -x,--exclude_files: Exclude the specified files
+    (default: 'deps.js')
+    (a comma separated list)
+  -r,--recurse: Recurse in to the subdirectories of the given path;
+    repeat this option to specify a list of values
+
+closure_linter.ecmalintrules:
+  --custom_jsdoc_tags: Extra jsdoc tags to allow
+    (default: '')
+    (a comma separated list)
+
+closure_linter.error_check:
+  --jslint_error: List of specific lint errors to check. Here is a list of accepted values:
+    - all: enables all following errors.
+    - blank_lines_at_top_level: validatesnumber of blank lines between blocks at top level.
+    - indentation: checks correct indentation of code.
+    - well_formed_author: validates the @author JsDoc tags.
+    - no_braces_around_inherit_doc: forbids braces around @inheritdoc JsDoc tags.
+    - braces_around_type: enforces braces around types in JsDoc tags.
+    - optional_type_marker: checks correct use of optional marker = in param types.
+    - unused_private_members: checks for unused private variables.
+    ;
+    repeat this option to specify a list of values
+    (default: '[]')
+  --[no]strict: Whether to validate against the stricter Closure style. This includes optional_type_marker,
+    well_formed_author, no_braces_around_inherit_doc, indentation, braces_around_type,
+    blank_lines_at_top_level.
+    (default: 'false')
+
+closure_linter.errorrules:
+  --ignore_errors: List of error codes to ignore.
+    (default: '')
+    (a comma separated list)
+  --[no]jsdoc: Whether to report errors for missing JsDoc.
+    (default: 'true')
+
+closure_linter.gjslint:
+  --additional_extensions: List of additional file extensions (not js) that should be treated as JavaScript
+    files.
+    (a comma separated list)
+  --[no]beep: Whether to beep when errors are found.
+    (default: 'true')
+  --[no]check_html: Whether to check javascript in html files.
+    (default: 'false')
+  -?,--[no]help: show this help
+  --[no]helpshort: show usage only for this module
+  --[no]helpxml: like --help, but generates XML output
+  --[no]multiprocess: Whether to attempt parallelized linting using the multiprocessing module. Enabled by
+    default on Linux if the multiprocessing module is present (Python 2.6+). Otherwise disabled by default.
+    Disabling may make debugging easier.
+    (default: 'false')
+  --[no]summary: Whether to show an error count summary.
+    (default: 'false')
+  --[no]time: Whether to emit timing statistics.
+    (default: 'false')
+  --[no]unix_mode: Whether to emit warnings in standard unix format.
+    (default: 'false')
+
+closure_linter.indentation:
+  --[no]debug_indentation: Whether to print debugging information for indentation.
+    (default: 'false')
+
+closure_linter.runner:
+  --[no]error_trace: Whether to show error exceptions.
+    (default: 'false')
+  --limited_doc_files: List of files with relaxed documentation checks. Will not report errors for missing
+    documentation, some missing descriptions, or methods whose @return tags don't have a matching return
+    statement.
+    (default: 'dummy.js,externs.js')
+    (a comma separated list)
+
+gflags:
+  --flagfile: Insert flag definitions from the given file into the command line.
+    (default: '')
+  --undefok: comma-separated list of flag names that it is okay to specify on the command line even if the
+    program does not define a flag with that name. IMPORTANT: flags in this list that have arguments MUST use
+    the --flag=value format.
+    (default: '')
+```
+### Reporters
+
+Some reporters to output lint information are bundled within this module. Add the `reporter: reporterObject` 
+field to your configuration object passed on execution.
+#### Console
+Console reporter ouputs info to your console
+```js
+var gjslint = require('closure-linter-wrapper').gjslint;
+gjslint({
+    params: paramsArray
+    reporter: {
+      name: 'console'
+    }
+  }, 
+  function (err, result) {
+  }
+);
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+* 0.1.0 First Implementation
+  * gjslint only
+  * Console Reporter
 
 ## License
 Copyright (c) 2013 Javier Mendiara Cañardo  
