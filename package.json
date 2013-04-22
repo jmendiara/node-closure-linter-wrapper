@@ -38,5 +38,8 @@
     "stream-splitter": "~0.2.0",
     "proxyquire": "~0.4.1"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "colors": "~0.6.0-1"
+  }
 }
