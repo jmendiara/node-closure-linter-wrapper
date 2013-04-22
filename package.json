@@ -35,11 +35,11 @@
     "mocha": "~1.9.0",
     "chai": "~1.5.0",
     "sinon": "~1.6.0",
-    "stream-splitter": "~0.2.0",
     "proxyquire": "~0.4.1"
   },
   "keywords": [],
   "dependencies": {
-    "colors": "~0.6.0-1"
+    "colors": "~0.6.0-1",
+    "stream-splitter": "~0.2.0"
   }
 }
