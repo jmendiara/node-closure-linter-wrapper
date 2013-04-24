@@ -1,7 +1,7 @@
 {
   "name": "closure-linter-wrapper",
   "description": "Node Wrapper to allow access to Google Closure Linter from NodeJS",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/jmendiara/node-closure-linter-wrapper",
   "author": {
     "name": "Javier Mendiara Cañardo",
@@ -22,7 +22,7 @@
   ],
   "main": "lib/closure-linter-wrapper",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt simplemocha"
@@ -34,12 +34,10 @@
     "grunt": "~0.4.1",
     "mocha": "~1.9.0",
     "chai": "~1.5.0",
-    "sinon": "~1.6.0",
-    "proxyquire": "~0.4.1"
+    "sinon": "~1.6.0"
   },
   "keywords": [],
   "dependencies": {
-    "colors": "~0.6.0-1",
-    "stream-splitter": "~0.2.0"
+    "colors": "~0.6.0-1"
   }
 }
