@@ -23,8 +23,7 @@ describe('Closure Linter Wrapper', function() {
 
   describe('gjslint parser', function() {
     it('should be able to parse a successful run', function(done) {
-      var successText = fs.readFileSync('test/files/success.txt', 'utf8')
-          .split('\n');
+      var successText = fs.readFileSync('test/files/success.txt', 'utf8');
 
       closure_linter.parseResult(successText, function(err, result) {
         expect(err).to.be.null;
@@ -34,8 +33,7 @@ describe('Closure Linter Wrapper', function() {
     });
 
     it('should be able to parse successful run with excludes', function(done) {
-      var successText = fs.readFileSync('test/files/exclude.txt', 'utf8')
-          .split('\n');
+      var successText = fs.readFileSync('test/files/exclude.txt', 'utf8');
 
       closure_linter.parseResult(successText, function(err, result) {
         expect(err).to.be.null;
@@ -45,8 +43,7 @@ describe('Closure Linter Wrapper', function() {
     });
 
     it('should be able to parse abstract of wrong run', function(done) {
-      var successText = fs.readFileSync('test/files/error.txt', 'utf8')
-          .split('\n');
+      var successText = fs.readFileSync('test/files/error.txt', 'utf8');
 
       closure_linter.parseResult(successText, function (err, result){
         expect(result).to.be.undefined;
@@ -62,8 +59,7 @@ describe('Closure Linter Wrapper', function() {
     });
 
     it('should be able to parse details of wrong run', function(done) {
-      var successText = fs.readFileSync('test/files/error.txt', 'utf8')
-          .split('\n');
+      var successText = fs.readFileSync('test/files/error.txt', 'utf8');
 
       closure_linter.parseResult(successText, function(err, result){
         expect(result).to.be.undefined;
