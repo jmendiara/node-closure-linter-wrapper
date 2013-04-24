@@ -19,15 +19,18 @@ npm install closure-linter-wrapper
 Execute the linter
 ```javascript
 var gjslint = require('closure-linter-wrapper').gjslint;
-gjslint({params: paramsArray}, function (err, result){
-  if (err){
-    console.error('Something went wrong', err);
-  } else if (result.success){
-      console.log('lint success');
-  } else {
-      console.log('lint failed', result);
+gjslint({
+    flags: ['--nojsdoc'],
+    src: ['test/files/error.js'],
+    reporter: {
+      name: 'console'
+    }
+  }, function(err, result) {
+    if (!err) {
+      console.log('Everything went fine');
+    }
   }
-});
+);
 ```
 
 Execute the automatic style fixer
@@ -36,17 +39,34 @@ Execute the automatic style fixer
 ```
 
 ## Documentation
-### Parameters
-The configuration parameters allow you to customize all the behaviour of the linter. The parameters are exactly 
-the same google linter flags you pass to the python linter, plus the flag for ommiting some errors by Elad Karako
+### Source Files
+If you want to specify single source files to be linted, just pass a `src:[Array]` to the gjslint function
+```js
+gjslint({
+    src: ['test/files/baz.js',
+      'test/files/foo.js'
+    ]
+  }, function(err, result) {
+    if (!err) {
+      console.log('Everything went fine');
+    }
+  }
+```
+
+If you want to lint complete directories (and exclude single files), read about `-r` and `-x` flags below
+
+
+### Flags
+The configuration flags allow you to customize all the behaviour of the linter. The flags are exactly 
+the same flags you pass to the python linter, plus the flag for ommiting some errors by Elad Karako
 ```js
 var gjslint = require('closure-linter-wrapper').gjslint;
-var paramsArray = [
+var flagsArray = [
   '--nostrict',
   '--nojsdoc',
   '--ignore_errors 220,14'
 ];
-gjslint({params: paramsArray}, function (err, result){});
+gjslint({flags: flagsArray}, function (err, result){});
 ```
 
 *TIP*: If you are using JetBrains WebStorm v6, you can enable gjslint. For doing this, you must provide a `config.file` with 
@@ -156,7 +176,7 @@ Console reporter ouputs info to your console
 ```js
 var gjslint = require('closure-linter-wrapper').gjslint;
 gjslint({
-    params: paramsArray
+    flags: flagsArray
     reporter: {
       name: 'console'
     }
@@ -170,6 +190,11 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.0 Stable API and Errors
+  * Changed the parameters siganture
+  * Now, all errors are on err parameter from callback
+  * More test!
+
 * 0.1.0 First Implementation
   * gjslint only
   * Console Reporter
