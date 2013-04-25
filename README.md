@@ -190,6 +190,9 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.1 
+  * gjslint compliance ;)
+
 * 0.2.0 Stable API and Errors
   * Changed the parameters siganture
   * Now, all errors are on err parameter from callback
