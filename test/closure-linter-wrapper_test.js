@@ -140,9 +140,26 @@ describe('Closure Linter Wrapper', function() {
       });
     });
 
+    it('should lint bad code ignoring errors with the new supported flag', function(done) {
+      gjslint({
+        flags: ['--disable 2,220'],
+        src: ['test/files/error.js'],
+        reporter: {
+          name: 'console'
+        }
+      }, function(err, result) {
+        expect(err).to.be.null;
+        done();
+      });
+    });
+
     it('should lint bad code ignoring jsdoc', function(done) {
       gjslint({
         flags: ['--nojsdoc'],
+        // this flag is not working in 2.3.10. Using patched version for BW
+        // compatibility
+        // https://code.google.com/p/closure-linter/issues/detail?id=64
+        //flags: ['--disable 220'],
         src: ['test/files/error.js'],
         reporter: {
           name: 'console'
