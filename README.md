@@ -4,10 +4,12 @@ Node Wrapper to allow access to [Google Closure Linter](https://developers.googl
 
 As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH.
 
-This wrapper has bundled the [Google Lint v2.3.9 patched by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
-that allows you to skip by configuration some detected errors. This version will
-allow your codebase to be transformed step by step, while maintaining fully
-Google coding guidelines compliance. Therefore, no aditionally dependencies must be installed, just python.
+This wrapper has bundled the Google Closure Linter v2.3.10, with two modifications
+* Support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
+for backwards compatibility with this module v0.2.1. Please, move your code to the closure-linter `--disable` flag introduced in v2.3.10 as `--ignore-errors` will support will be dropped in next minor release.
+
+* `--nojsdoc` flag support for closure-linter v2.3.10. The version released by Google has a bug in `--nojsdoc` management, but this bug is solved in this module, so you can maintain the same flags.
+Once google releases a new version fixing that, my hack will dissapear. [More info about BUG 64](https://code.google.com/p/closure-linter/issues/detail?id=64).
 
 
 ## Getting Started
@@ -58,13 +60,13 @@ If you want to lint complete directories (and exclude single files), read about 
 
 ### Flags
 The configuration flags allow you to customize all the behaviour of the linter. The flags are exactly 
-the same flags you pass to the python linter, plus the flag for ommiting some errors by Elad Karako
+the same flags you pass to the python linter, plus the flag for ommiting some errors 
 ```js
 var gjslint = require('closure-linter-wrapper').gjslint;
 var flagsArray = [
   '--nostrict',
   '--nojsdoc',
-  '--ignore_errors 220,14'
+  '--disable 14'
 ];
 gjslint({flags: flagsArray}, function (err, result){});
 ```
@@ -79,8 +81,7 @@ closure_linter.checker:
   --closurized_namespaces: Namespace prefixes, used for testing ofgoog.provide/require
     (default: '')
     (a comma separated list)
-  --ignored_extra_namespaces: Fully qualified namespaces that should be not be reported as extra by the
-    linter.
+  --ignored_extra_namespaces: Fully qualified namespaces that should be not be reported as extra by the linter.
     (default: '')
     (a comma separated list)
 
@@ -113,20 +114,21 @@ closure_linter.error_check:
     repeat this option to specify a list of values
     (default: '[]')
   --[no]strict: Whether to validate against the stricter Closure style. This includes optional_type_marker,
-    well_formed_author, no_braces_around_inherit_doc, indentation, braces_around_type,
+    well_formed_author, no_braces_around_inherit_doc, variable_arg_marker, indentation, braces_around_type,
     blank_lines_at_top_level.
     (default: 'false')
 
 closure_linter.errorrules:
-  --ignore_errors: List of error codes to ignore.
-    (default: '')
+  --disable: Disable specific error. Usage Ex.: gjslint --disable 1,0011 foo.js.
     (a comma separated list)
   --[no]jsdoc: Whether to report errors for missing JsDoc.
     (default: 'true')
+  --max_line_length: Maximum line length allowed without warning.
+    (default: '80')
+    (a positive integer)
 
 closure_linter.gjslint:
-  --additional_extensions: List of additional file extensions (not js) that should be treated as JavaScript
-    files.
+  --additional_extensions: List of additional file extensions (not js) that should be treated as JavaScript files.
     (a comma separated list)
   --[no]beep: Whether to beep when errors are found.
     (default: 'true')
@@ -135,9 +137,9 @@ closure_linter.gjslint:
   -?,--[no]help: show this help
   --[no]helpshort: show usage only for this module
   --[no]helpxml: like --help, but generates XML output
-  --[no]multiprocess: Whether to attempt parallelized linting using the multiprocessing module. Enabled by
-    default on Linux if the multiprocessing module is present (Python 2.6+). Otherwise disabled by default.
-    Disabling may make debugging easier.
+  --[no]multiprocess: Whether to attempt parallelized linting using the multiprocessing module. Enabled by default on
+    Linux if the multiprocessing module is present (Python 2.6+). Otherwise disabled by default. Disabling may make
+    debugging easier.
     (default: 'false')
   --[no]summary: Whether to show an error count summary.
     (default: 'false')
@@ -154,17 +156,16 @@ closure_linter.runner:
   --[no]error_trace: Whether to show error exceptions.
     (default: 'false')
   --limited_doc_files: List of files with relaxed documentation checks. Will not report errors for missing
-    documentation, some missing descriptions, or methods whose @return tags don't have a matching return
-    statement.
+    documentation, some missing descriptions, or methods whose @return tags don't have a matching return statement.
     (default: 'dummy.js,externs.js')
     (a comma separated list)
 
 gflags:
   --flagfile: Insert flag definitions from the given file into the command line.
     (default: '')
-  --undefok: comma-separated list of flag names that it is okay to specify on the command line even if the
-    program does not define a flag with that name. IMPORTANT: flags in this list that have arguments MUST use
-    the --flag=value format.
+  --undefok: comma-separated list of flag names that it is okay to specify on the command line even if the program does
+    not define a flag with that name. IMPORTANT: flags in this list that have arguments MUST use the --flag=value
+    format.
     (default: '')
 ```
 ### Reporters
@@ -190,6 +191,10 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+* 0.2.2 
+  * Introduced support for closure-linter 2.3.10
+
 * 0.2.1 
   * gjslint compliance ;)
 
