@@ -13,7 +13,7 @@ Once google releases a new version fixing that, my hack will dissapear. [More in
 
 
 ## Getting Started
-Install the module with: 
+Install the module with:
 ```bash
 npm install closure-linter-wrapper
 ```
@@ -59,8 +59,8 @@ If you want to lint complete directories (and exclude single files), read about 
 
 
 ### Flags
-The configuration flags allow you to customize all the behaviour of the linter. The flags are exactly 
-the same flags you pass to the python linter, plus the flag for ommiting some errors 
+The configuration flags allow you to customize all the behaviour of the linter. The flags are exactly
+the same flags you pass to the python linter, plus the flag for ommiting some errors
 ```js
 var gjslint = require('closure-linter-wrapper').gjslint;
 var flagsArray = [
@@ -71,8 +71,8 @@ var flagsArray = [
 gjslint({flags: flagsArray}, function (err, result){});
 ```
 
-*TIP*: If you are using JetBrains WebStorm v6, you can enable gjslint. For doing this, you must provide a `config.file` with 
-the flags passed to your linter. You can rehuse this `config.file` and pass it to this linter, by specifying in the 
+*TIP*: If you are using JetBrains WebStorm v6, you can enable gjslint. For doing this, you must provide a `config.file` with
+the flags passed to your linter. You can rehuse this `config.file` and pass it to this linter, by specifying in the
 `--flagfile` flag
 
 #### Flags reference
@@ -170,7 +170,7 @@ gflags:
 ```
 ### Reporters
 
-Some reporters to output lint information are bundled within this module. Add the `reporter: reporterObject` 
+Some reporters to output lint information are bundled within this module. Add the `reporter: reporterObject`
 field to your configuration object passed on execution.
 #### Console
 Console reporter ouputs info to your console
@@ -181,7 +181,23 @@ gjslint({
     reporter: {
       name: 'console'
     }
-  }, 
+  },
+  function (err, result) {
+  }
+);
+```
+
+#### gjslint_xml
+The gjslint_xml reporter outputs xml format which is compatible with jslint reporter that can be used in Jenkins
+along with the Violations plugin.
+```js
+var gjslint = require('closure-linter-wrapper').gjslint;
+gjslint({
+    flags: flagsArray
+    reporter: {
+      name: 'gjslint_xml'
+    }
+  },
   function (err, result) {
   }
 );
@@ -192,10 +208,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-* 0.2.2 
+* 0.2.2
   * Introduced support for closure-linter 2.3.10
 
-* 0.2.1 
+* 0.2.1
   * gjslint compliance ;)
 
 * 0.2.0 Stable API and Errors
@@ -208,5 +224,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
   * Console Reporter
 
 ## License
-Copyright (c) 2013 Javier Mendiara Cañardo  
+Copyright (c) 2013 Javier Mendiara Cañardo
 Licensed under the MIT license.
