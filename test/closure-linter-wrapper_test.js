@@ -1,7 +1,6 @@
 'use strict';
 
-var proxyquire = require('proxyquire'),
-    closure_linter = require('../lib/closure-linter-wrapper'),
+var closure_linter = require('../lib/closure-linter-wrapper'),
     fs = require('fs');
 
 
