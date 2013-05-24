@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jslint>
+	<file name="error.js">
+		<issue line="5" reason="No docs found for member &apos;global.expect&apos;" severity="220" />
+		<issue line="7" reason="Missing space before &quot;{&quot;" severity="2" />
+		<issue line="11" reason="Missing space before &quot;{&quot;" severity="2" />
+	</file>
+</jslint>
