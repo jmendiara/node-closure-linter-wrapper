@@ -7,6 +7,12 @@
     "name": "Javier Mendiara Cañardo",
     "email": "jmendiara@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Denis Ciccale",
+      "email": "dciccale@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jmendiara/node-closure-linter-wrapper.git"
@@ -36,8 +42,11 @@
     "chai": "~1.5.0",
     "sinon": "~1.6.0"
   },
-  "keywords": [],
+  "keywords": [
+    "closure-linter"
+  ],
   "dependencies": {
-    "colors": "~0.6.0-1"
+    "colors": "~0.6.0-1",
+    "grunt-release": "~0.3.3"
   }
 }
