@@ -252,5 +252,19 @@ describe('Closure Linter Wrapper', function() {
         done();
       });
     });
+
+    it('should support a .gjslintrc file for specifying the flags', function(done) {
+      gjslint({
+        gjslintrc: 'test/files/.gjslintrc',
+        src: ['test/files/error.js'],
+        reporter: {
+          name: 'console'
+        }
+      }, function(err, result) {
+        expect(err.code).to.be.equal(2);
+        expect(err.info.total).to.be.equal(1);
+        done();
+      });
+    });
   });
 });
