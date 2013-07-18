@@ -188,14 +188,15 @@ gjslint({
 ```
 
 #### gjslint_xml
-The gjslint_xml reporter outputs xml format which is compatible with jslint reporter that can be used in Jenkins
-along with the Violations plugin.
+The gjslint_xml reporter outputs xml format which is compatible with jslint reporter that can be used in Jenkins along with the Violations plugin.
+Add a `dest` option to set the destination if you want to save the file.
 ```js
 var gjslint = require('closure-linter-wrapper').gjslint;
 gjslint({
     flags: flagsArray
     reporter: {
-      name: 'gjslint_xml'
+      name: 'gjslint_xml',
+      dest: 'reports/gjslint.xml'
     }
   },
   function (err, result) {
@@ -208,7 +209,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 * 0.2.3
-  * new gjslint_xml reporter by dciccale 
+  * new gjslint_xml reporter by dciccale
 
 * 0.2.2
   * Introduced support for closure-linter 2.3.10
