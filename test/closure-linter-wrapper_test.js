@@ -252,5 +252,22 @@ describe('Closure Linter Wrapper', function() {
         done();
       });
     });
+
+    it('should export the results to a results file', function() {
+      var expected_report = fs.readFileSync('test/files/expected_report.xml', 'utf8'),
+        report;
+
+      gjslint({
+        src: ['test/files/error.js'],
+        reporter: {
+          name: 'gjslint_xml',
+          dest: 'test/files/output.xml'
+        }
+      }, function() {
+        report = fs.readFileSync('test/files/output.xml', 'utf-8');
+        expect(report).to.be.equal(expected_report);
+        done();
+      });
+    });
   });
 });
