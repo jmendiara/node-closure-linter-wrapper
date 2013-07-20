@@ -39,3 +39,5 @@ Icon
 *.iws
 .idea/
 
+# Sublime Text
+*.sublime-*
