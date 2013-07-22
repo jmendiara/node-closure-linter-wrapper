@@ -1,2 +1,2 @@
-Skipping 1 file(s).
+Skipping 10 file(s).
 1 files checked, no errors found.

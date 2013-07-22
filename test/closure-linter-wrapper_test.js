@@ -255,7 +255,7 @@ describe('Closure Linter Wrapper', function() {
 
     it('should export the results to a results file', function() {
       var expected_report = fs.readFileSync('test/files/expected_report.xml', 'utf8'),
-        report;
+          report;
 
       gjslint({
         src: ['test/files/error.js'],
@@ -269,5 +269,24 @@ describe('Closure Linter Wrapper', function() {
         done();
       });
     });
+
+    it('should be able to parse abstract of wrong run in windows', function(done) {
+      var successText = fs.readFileSync('test/files/error-windows.txt', 'utf8');
+
+      closure_linter.parseResult(successText, function (err, result){
+        expect(result).to.be.undefined;
+        expect(err).to.have.property('code').to.be.equal(2);
+
+        var data = err.info;
+        expect(data).to.have.property('filesCount').to.be.equal(2);
+        expect(data).to.have.property('total').to.be.equal(3);
+        expect(data).to.have.property('newErrors').to.be.equal(0);
+        expect(data).to.have.property('filesOK').to.be.equal(0);
+        done();
+      });
+    });
+
+
+
   });
 });
