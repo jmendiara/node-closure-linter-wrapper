@@ -248,7 +248,7 @@ describe('Closure Linter Wrapper', function() {
         }
       }, function() {
         process.stdout.write = pstdoutwrite;
-        expect(report).to.be.equal(expected_report);
+        expect(report).to.be.equal(expected_report.replace('error.js', process.cwd() + '/test/files/error.js'));
         done();
       });
     });
@@ -265,7 +265,7 @@ describe('Closure Linter Wrapper', function() {
         }
       }, function() {
         report = fs.readFileSync('test/files/output.xml', 'utf-8');
-        expect(report).to.be.equal(expected_report);
+        expect(report).to.be.equal(expected_report.replace('error.js', process.cwd() + '/test/files/error.js'));
         done();
       });
     });
