@@ -1,6 +1,6 @@
 # closure-linter-wrapper
 
-[![Build Status](https://travis-ci.org/serginator/node-closure-linter-wrapper.png)](https://travis-ci.org/serginator/node-closure-linter-wrapper)
+[![Build Status](https://travis-ci.org/jmendiara/node-closure-linter-wrapper.png)](https://travis-ci.org/jmendiara/node-closure-linter-wrapper)
 
 Node Wrapper to allow access to [Google Closure Linter](https://developers.google.com/closure/utilities/) from NodeJS
 
