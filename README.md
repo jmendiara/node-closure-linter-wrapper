@@ -8,11 +8,7 @@ As Google Linter is coded in python, you MUST have python installed, and accessi
 
 This wrapper has bundled the Google Closure Linter v2.3.10, with two modifications
 * Support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
-for backwards compatibility with this module v0.2.1. Please, move your code to the closure-linter `--disable` flag introduced in v2.3.10 as `--ignore-errors` will support will be dropped in next minor release.
-
-* `--nojsdoc` flag support for closure-linter v2.3.10. The version released by Google has a bug in `--nojsdoc` management, but this bug is solved in this module, so you can maintain the same flags.
-Once google releases a new version fixing that, my hack will dissapear. [More info about BUG 64](https://code.google.com/p/closure-linter/issues/detail?id=64).
-
+for backwards compatibility with this module v0.2.1. Please, move your code to the closure-linter `--disable` flag introduced in v2.3.10 as `--ignore-errors` will support will be dropped in next medium release.
 
 ## Getting Started
 Install the module with:
@@ -123,6 +119,9 @@ closure_linter.error_check:
 closure_linter.errorrules:
   --disable: Disable specific error. Usage Ex.: gjslint --disable 1,0011 foo.js.
     (a comma separated list)
+  --ignore_errors: Disable specific error. Usage Ex.: gjslint --ignore_errors 1,0011 foo.js.
+    (default: '')
+    (a comma separated list)
   --[no]jsdoc: Whether to report errors for missing JsDoc.
     (default: 'true')
   --max_line_length: Maximum line length allowed without warning.
@@ -210,6 +209,9 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.7
+  * Update to closure-linter v2.3.11 by @ama-ch
+
 * 0.2.6
   * Fix gjslint_xml reporter to save to an absolute path by @serginator
 
