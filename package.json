@@ -45,19 +45,19 @@
     "test": "grunt simplemocha"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-simple-mocha": "~0.4.0",
     "grunt": "~0.4.1",
-    "mocha": "~1.9.0",
-    "chai": "~1.5.0",
-    "sinon": "~1.6.0"
+    "mocha": "~1.13.0",
+    "chai": "~1.8.0",
+    "sinon": "~1.7.0",
+    "grunt-release": "~0.6.0"
   },
   "keywords": [
     "closure-linter"
   ],
   "dependencies": {
-    "colors": "~0.6.0-1",
-    "grunt-release": "~0.3.5"
+    "colors": "~0.6.2"
   }
 }
