@@ -7,7 +7,7 @@ Node Wrapper to allow access to [Google Closure Linter](https://developers.googl
 
 As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH.
 
-This wrapper has bundled the Google Closure Linter v2.3.11, with one modification
+This wrapper has bundled the Google Closure Linter v2.3.12, with one modification
 * Support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
 for backwards compatibility with this module v0.2.1. Please, move your code to the closure-linter `--disable` flag introduced in v2.3.10 as `--ignore-errors` will support will be dropped in next medium release.
 
@@ -210,6 +210,9 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.9  
+  * Update to closure-linter v2.3.12 by @xyzfer
+
 * 0.2.7
   * Update to closure-linter v2.3.11 by @ama-ch
 
