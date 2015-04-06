@@ -210,6 +210,9 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.10  
+  * Support for files with namespaces by @dcantelar
+
 * 0.2.9  
   * Update to closure-linter v2.3.12 by @xyzfer
 
