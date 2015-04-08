@@ -1,7 +1,7 @@
 {
   "name": "closure-linter-wrapper",
   "description": "Node Wrapper to allow access to Google Closure Linter from NodeJS",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "homepage": "https://github.com/jmendiara/node-closure-linter-wrapper",
   "author": {
     "name": "Javier Mendiara Cañardo",
