@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     simplemocha: {
       options: {
         ui: 'bdd',
-        reporter: 'dot'
+        reporter: 'spec'
       },
       unit: {
         src: [
