@@ -14,7 +14,7 @@ describe('Closure Linter Wrapper', function() {
   });
 
   it('should be able to detect python', function(done) {
-     closure_linter.checkPython(function(err) {
+     closure_linter.checkPython('python', function(err) {
        expect(err).to.be.null;
        done();
      });
