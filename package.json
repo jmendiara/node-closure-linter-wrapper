@@ -28,6 +28,9 @@
     },
     {
       "name": "Michael Mifsud - @xyzfer"
+    },
+    {
+      "name": "Garrett Wu - @garrettwu @gwu"
     }
   ],
   "repository": {
@@ -51,19 +54,19 @@
     "test": "grunt simplemocha"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-simple-mocha": "~0.4.0",
-    "grunt": "~0.4.1",
-    "mocha": "~1.13.0",
-    "chai": "~1.8.0",
-    "sinon": "~1.7.0",
-    "grunt-release": "~0.6.0"
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-simple-mocha": "^0.4.0",
+    "grunt": "^0.4.5",
+    "mocha": "^2.2.5",
+    "chai": "^3.0.0",
+    "sinon": "^1.15.3",
+    "grunt-release": "^0.12.0"
   },
   "keywords": [
     "closure-linter"
   ],
   "dependencies": {
-    "colors": "~0.6.2"
+    "colors": "^1.1.2"
   }
 }
