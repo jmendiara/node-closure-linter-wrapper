@@ -5,7 +5,7 @@
 
 Node Wrapper to allow access to [Google Closure Linter](https://developers.google.com/closure/utilities/) from NodeJS
 
-As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH.
+As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH or specified in options.pythonPath.
 
 This wrapper has bundled the Google Closure Linter v2.3.12, with one modification
 * Support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
@@ -204,6 +204,17 @@ gjslint({
   function (err, result) {
   }
 );
+```
+
+### Python Path
+Since Google Linter requires python, you must have it installed on your system. By default, it searches your PATH environment variable. Alternatively, you may specify the path to your python binary using the `pythonPath` option.
+```js
+var gjslint = require('closure-linter-wrapper').gjslint;
+gjslint({
+    src: [...],
+    pythonPath: '/path/to/my/python'
+  }
+)
 ```
 
 ## Contributing
