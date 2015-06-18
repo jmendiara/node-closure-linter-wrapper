@@ -219,6 +219,11 @@ gjslint({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 1.0.0
+  * **Breaking change** Drop support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
+  * Update closure-linter to v2.3.17
+  * Add pythonPath config option (by @gwu)
+
 * 0.2.10  
   * Support for files with namespaces by @dcantelar
 
