@@ -126,7 +126,20 @@ describe('Closure Linter Wrapper', function() {
       });
     });
 
-    it('should lint bad code ignoring errors', function(done) {
+    it('should lint bad code in multiple files', function(done) {
+      gjslint({
+        src: ['test/files/error.js', 'test/files/error2.js'],
+        reporter: {
+          name: 'console'
+        }
+      }, function(err, result) {
+        expect(err.code).to.be.equal(2);
+        expect(err.info.total).to.be.equal(6);
+        done();
+      });
+    });
+
+    it.skip('DEPRECATED! should lint bad code ignoring errors', function(done) {
       gjslint({
         flags: ['--ignore_errors 2,220'],
         src: ['test/files/error.js'],
@@ -174,7 +187,7 @@ describe('Closure Linter Wrapper', function() {
       gjslint({
         flags: [
           '-r test/files/',
-          '-x test/files/error.js'
+          '-x test/files/error.js,test/files/error2.js'
         ],
         reporter: {
           name: 'console'
@@ -196,8 +209,8 @@ describe('Closure Linter Wrapper', function() {
         }
       }, function(err, result) {
         expect(err.code).to.be.equal(2);
-        expect(err.info.total).to.be.equal(3);
-        expect(err.info.filesCount).to.be.equal(1);
+        expect(err.info.total).to.be.equal(6);
+        expect(err.info.filesCount).to.be.equal(2);
         done();
       });
     });

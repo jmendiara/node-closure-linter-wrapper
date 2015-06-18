@@ -121,7 +121,7 @@ class RequireProvideSorter(object):
     first_token = tokens[0]
     last_token = tokens[-1]
     i = last_token
-    while i != first_token:
+    while i != first_token and i is not None:
       if i.type is Type.BLANK_LINE:
         tokenutil.DeleteToken(i)
       i = i.previous
@@ -171,6 +171,9 @@ class RequireProvideSorter(object):
             'goog.provide', 'goog.require', 'goog.setTestOnly']:
           # These 3 identifiers are at the top of the file. So if any other
           # identifier is encountered, return.
+          # TODO(user): Once it's decided what ordering goog.require
+          # should use, add 'goog.module' to the list above and implement the
+          # decision.
           break
       token = token.next
 
@@ -194,8 +197,9 @@ class RequireProvideSorter(object):
     """
     token_strings = []
     for token in tokens:
-      name = tokenutil.GetStringAfterToken(token)
-      token_strings.append(name)
+      if not token.is_deleted:
+        name = tokenutil.GetStringAfterToken(token)
+        token_strings.append(name)
     return token_strings
 
   def _GetTokensMap(self, tokens):

@@ -7,9 +7,7 @@ Node Wrapper to allow access to [Google Closure Linter](https://developers.googl
 
 As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH or specified in options.pythonPath.
 
-This wrapper has bundled the Google Closure Linter v2.3.12, with one modification
-* Support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
-for backwards compatibility with this module v0.2.1. Please, move your code to the closure-linter `--disable` flag introduced in v2.3.10 as `--ignore-errors` will support will be dropped in next medium release.
+This wrapper has bundled the Google Closure Linter v2.3.17
 
 ## Getting Started
 Install the module with:
@@ -258,9 +256,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
   * Console Reporter
 
 ## License
-Copyright (c) 2013 Javier Mendiara Cañardo
+Copyright (c) 2013 - 2015 Javier Mendiara Cañardo
 Licensed under the MIT license.
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmendiara/node-closure-linter-wrapper/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+`closure-linter` [MIT license](https://code.google.com/p/closure-linter/source/browse/trunk/LICENSE) by Google
+`python-gflags`  [NEW BSD License](https://code.google.com/p/python-gflags/source/browse/trunk/COPYING) By Google

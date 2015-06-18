@@ -70,13 +70,23 @@ def _FindFirstContextOfType(token, context_type):
       return context
 
 
+def _ParseAssignment(script):
+  start_token = testutil.TokenizeSourceAndRunEcmaPass(script)
+  statement = _FindFirstContextOfType(
+      start_token, ecmametadatapass.EcmaContext.VAR)
+  return statement
+
+
 class StatementTest(googletest.TestCase):
 
   def assertAlias(self, expected_match, script):
-    start_token = testutil.TokenizeSourceAndRunEcmaPass(script)
-    statement = _FindFirstContextOfType(
-        start_token, ecmametadatapass.EcmaContext.STATEMENT)
+    statement = _ParseAssignment(script)
     match = scopeutil.MatchAlias(statement)
+    self.assertEquals(expected_match, match)
+
+  def assertModuleAlias(self, expected_match, script):
+    statement = _ParseAssignment(script)
+    match = scopeutil.MatchModuleAlias(statement)
     self.assertEquals(expected_match, match)
 
   def testSimpleAliases(self):
@@ -93,16 +103,23 @@ class StatementTest(googletest.TestCase):
         ('Component', 'goog.ui.Component'),
         'var Component = /* comment */ goog.ui.Component;')
 
-  def testMultilineComment(self):
+  def testMultilineAlias(self):
     self.assertAlias(
         ('Component', 'goog.ui.Component'),
-        'var Component = \n  goog.ui.Component;')
+        'var Component = \n  goog.ui.\n  Component;')
 
   def testNonSymbolAliasVarStatements(self):
     self.assertAlias(None, 'var foo = 3;')
     self.assertAlias(None, 'var foo = function() {};')
-    self.assertAlias(None, 'for(var foo = bar;;){}')
     self.assertAlias(None, 'var foo = bar ? baz : qux;')
+
+  def testModuleAlias(self):
+    self.assertModuleAlias(
+        ('foo', 'goog.foo'),
+        'var foo = goog.require("goog.foo");')
+    self.assertModuleAlias(
+        None,
+        'var foo = goog.require(notastring);')
 
 
 class ScopeBlockTest(googletest.TestCase):

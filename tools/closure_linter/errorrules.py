@@ -28,12 +28,6 @@ flags.DEFINE_boolean('jsdoc', True,
 flags.DEFINE_list('disable', None,
                   'Disable specific error. Usage Ex.: gjslint --disable 1,'
                   '0011 foo.js.')
-
-""" PATCH for backwards compatibility """
-flags.DEFINE_list('ignore_errors', [],
-                  'Disable specific error. Usage Ex.: gjslint --ignore_errors 1,'
-                  '0011 foo.js.')
-
 flags.DEFINE_integer('max_line_length', 80, 'Maximum line length allowed '
                      'without warning.', lower_bound=1)
 
@@ -74,11 +68,5 @@ def ShouldReportError(error):
       errors.MISSING_RETURN_DOCUMENTATION,
       errors.MISSING_MEMBER_DOCUMENTATION,
       errors.MISSING_PRIVATE,
-      errors.MISSING_JSDOC_TAG_THIS)) and (
+      errors.MISSING_JSDOC_TAG_THIS)) and
           (not FLAGS.disable or error not in disabled_error_nums))
-      ) and str(error) not in FLAGS.ignore_errors
-  """ This last line has the
-     PATCH FOR BACKWARDS COMPATIBILITY with old --ignore_errors flag
-     Also the --nojsdoc bug is corrected
-     https://code.google.com/p/closure-linter/issues/detail?id=64
-  """
