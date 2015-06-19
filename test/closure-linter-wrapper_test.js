@@ -57,6 +57,22 @@ describe('Closure Linter Wrapper', function() {
       });
     });
 
+    it('should be able to parse abstract of wrong run (no plurals)', function(done) {
+      var successText = fs.readFileSync('test/files/error2.txt', 'utf8');
+
+      closure_linter.parseResult(successText, function (err, result){
+        expect(result).to.be.undefined;
+        expect(err).to.have.property('code').to.be.equal(2);
+
+        var data = err.info;
+        expect(data).to.have.property('filesCount').to.be.equal(1);
+        expect(data).to.have.property('total').to.be.equal(1);
+        expect(data).to.have.property('newErrors').to.be.equal(1);
+        expect(data).to.have.property('filesOK').to.be.equal(1);
+        done();
+      });
+    });
+
     it('should be able to parse details of wrong run', function(done) {
       var successText = fs.readFileSync('test/files/error.txt', 'utf8');
 

@@ -1,0 +1,9 @@
+----- FILE  :  /Users/foo.js -----
+Line 3, E:0220: No docs found for member 'module.exports'
+Found 1 error, including 1 new error, in 1 file (1 file OK).
+
+Some of the errors reported by GJsLint may be auto-fixable using the script
+fixjsstyle. Please double check any changes it makes and report any bugs. The
+script can be run by executing:
+
+fixjsstyle Gruntfile.js mocha-globals.js
