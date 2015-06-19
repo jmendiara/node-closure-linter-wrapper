@@ -61,7 +61,7 @@
     "mocha": "^2.2.5",
     "chai": "^3.0.0",
     "sinon": "^1.15.3",
-    "grunt-release": "^0.12.0"
+    "grunt-release": "^0.13.0"
   },
   "keywords": [
     "closure-linter"
