@@ -20,6 +20,13 @@ describe('Closure Linter Wrapper', function() {
      });
   });
 
+  it('should be able to detect python multiple times', function(done) {
+    closure_linter.checkPython('python', function(err) {
+      expect(err).to.be.null;
+      done();
+    });
+  });
+
   describe('gjslint parser', function() {
     it('should be able to parse a successful run', function(done) {
       var successText = fs.readFileSync('test/files/success.txt', 'utf8');
