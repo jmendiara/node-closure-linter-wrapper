@@ -7,7 +7,7 @@ Node Wrapper to allow access to [Google Closure Linter](https://developers.googl
 
 As Google Linter is coded in python, you MUST have python installed, and accessible in your PATH or specified in options.pythonPath.
 
-This wrapper has bundled the Google Closure Linter v2.3.17
+This wrapper has bundled the Google Closure Linter v2.3.19.
 
 ## Getting Started
 Install the module with:
