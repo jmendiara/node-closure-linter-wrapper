@@ -264,5 +264,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 Copyright (c) 2013 - 2015 Javier Mendiara Cañardo
 Licensed under the MIT license.
 
-`closure-linter` [MIT license](https://code.google.com/p/closure-linter/source/browse/trunk/LICENSE) by Google
-`python-gflags`  [NEW BSD License](https://code.google.com/p/python-gflags/source/browse/trunk/COPYING) By Google
+`closure-linter` [MIT license](https://github.com/google/closure-linter/blob/master/LICENSE) by Google
+`python-gflags`  [NEW BSD License](https://code.google.com/archive/p/python-gflags/source) By Google
