@@ -1,0 +1,3 @@
+[submodule "tools/closure-linter"]
+	path = tools/closure-linter
+	url = https://github.com/google/closure-linter.git
