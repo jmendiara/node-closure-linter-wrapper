@@ -57,9 +57,11 @@ describe('Closure Linter Wrapper', function() {
 
         var data = err.info;
         expect(data).to.have.property('filesCount').to.be.equal(2);
-        expect(data).to.have.property('total').to.be.equal(3);
+        expect(data).to.have.property('total').to.be.equal(4);
         expect(data).to.have.property('newErrors').to.be.equal(0);
-        expect(data).to.have.property('filesOK').to.be.equal(0);
+        expect(data).to.have.property('fails').to.have.length(2);
+        expect(data.fails[0]).to.have.property('errors').to.have.length(3);
+        expect(data.fails[1]).to.have.property('errors').to.have.length(1);
         done();
       });
     });
@@ -92,7 +94,7 @@ describe('Closure Linter Wrapper', function() {
         expect(fails).to.have.length(2);
 
         expect(fails[0]).to.have.property('file').to.be.equal('/Users/foo.js');
-        expect(fails[0]).to.have.property('errors').to.have.length(2);
+        expect(fails[0]).to.have.property('errors').to.have.length(3);
 
         var errors = fails[0].errors;
         expect(errors[0]).to.have.property('line').to.be.equal(3);
