@@ -119,6 +119,46 @@ describe('Closure Linter Wrapper', function() {
         done();
       });
     });
+
+    it('should be able to parse details of wrong run with spaces in file path', function(done) {
+      var successText = fs.readFileSync('test/files/error-path-with-spaces.txt', 'utf8');
+
+      closure_linter.parseResult(successText, function(err, result){
+        expect(result).to.be.undefined;
+        expect(err).to.have.property('code').to.be.equal(2);
+        expect(err).to.have.property('info').to.have.property('fails');
+
+        var fails = err.info.fails;
+        expect(fails).to.have.length(2);
+
+        expect(fails[0]).to.have.property('file').to.be.equal('/Users/my path/foo.js');
+        expect(fails[0]).to.have.property('errors').to.have.length(2);
+
+        var errors = fails[0].errors;
+        expect(errors[0]).to.have.property('line').to.be.equal(3);
+        expect(errors[0]).to.have.property('code').to.be.equal(220);
+        expect(errors[0]).to.have.property('description').to.be.equal(
+            'No docs found for member \'module.exports\''
+        );
+
+        expect(errors[1]).to.have.property('line').to.be.equal(5);
+        expect(errors[1]).to.have.property('code').to.be.equal(20);
+        expect(errors[1]).to.have.property('description').to.be.equal(
+            'Something'
+        );
+
+        expect(fails[1]).to.have.property('file').to.be.equal('/Users/my path/bar.js');
+        expect(fails[1]).to.have.property('errors').to.have.length(1);
+
+        errors = fails[1].errors;
+        expect(errors[0]).to.have.property('line').to.be.equal(4);
+        expect(errors[0]).to.have.property('code').to.be.equal(220);
+        expect(errors[0]).to.have.property('description').to.be.equal(
+            'No docs found for member \'global.expect\''
+        );
+        done();
+      });
+    });
   });
 
   describe('gjslint', function () {
