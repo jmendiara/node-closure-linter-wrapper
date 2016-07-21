@@ -215,10 +215,23 @@ gjslint({
 )
 ```
 
+## Development
+```sh
+git clone --recursive git@github.com:jmendiara/node-closure-linter-wrapper.git
+cd node-closure-linter-wrapper
+npm install
+```
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 1.1.0
+  * Feat: Update to Closure linter v2.3.19 (@jeremybanks)  
+  * Fix: Support for negative error numbers (@jeremybanks)  
+  * Fix: Support for Spaces in file patch (@dcantelar)  
+
 * 1.0.0
   * **Breaking change** Drop support for `--ignore_errors` flag introduced in [Google Lint v2.3.9 patch by Elad Karako](http://icompile.eladkarako.com/python-patch-ignore-some-of-google-closure-jslinter-gjslint-errors/)
   * Update closure-linter to v2.3.17
